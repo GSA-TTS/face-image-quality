@@ -524,7 +524,7 @@ class FaceImageQuality:
             list: A list of face quality values.
         '''
 
-        face_qualities=face_image_quality.get_face_quality_params(image)
+        face_qualities=self.get_face_quality_params(image)
         # from the results ge only result give an arary
         values = []
         for key in face_qualities:
