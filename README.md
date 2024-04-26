@@ -68,8 +68,9 @@ from FaceImageQuality import FaceImageQuality
 
 face_image_quality = FaceImageQuality()
 image = cv2.imread("image.jpg")
-res,message = face_image_quality.check_image_quality(image)
-print(res,',',message)
+res,value,message = face_image_quality.check_image_quality(image)
+print(res,',',value,',',message)
+
 ```
 
 
@@ -84,8 +85,8 @@ path = "path of the folder"
 face_image_quality = FaceImageQuality()
 for filename in os.listdir(path):
     image = cv2.imread(os.path.join(path,filename))
-    res,message = face_image_quality.check_image_quality(image)
-    print(filename,',',res,',',message)
+    res,value,message = face_image_quality.check_image_quality(image)
+    print(filename,',',res,',',value,',',message)
 ```
 
 # Original version

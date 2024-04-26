@@ -583,6 +583,6 @@ class FaceImageQuality:
 
         for key in face_quality_params:
             if face_quality_params[key]['result'] == False:
-                return face_quality_params[key]['result'],face_quality_params[key]['msg']
+                return face_quality_params[key]['result'],face_quality_params[key]['value'],face_quality_params[key]['msg']
         
-        return True, "All face quality parameters are within the acceptable range"
+        return True,None,"All face quality parameters are within the acceptable range"
