@@ -20,6 +20,7 @@ pip install -r requirements.txt
 
 ## How to use
 ## To check face quality parameters
+Returns : {'brightness': {'result': True, 'value': 191.91988438658106, 'msg': 'The brightness of the image is within the acceptable range.'}, 'blur': {'result': True, 'value': 8.86348518232716, 'msg': 'The image is not blurry.'}.... }
 ```python
 import cv2
 from FaceImageQuality import FaceImageQuality
