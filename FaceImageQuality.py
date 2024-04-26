@@ -12,6 +12,7 @@ import messages as msg
 
 
 class FaceImageQuality:
+    
     def __init__(self):
         self.detector = get_frontal_face_detector()
         self.predictor = shape_predictor("shape_files/shape_predictor_68_face_landmarks.dat")
@@ -504,7 +505,7 @@ class FaceImageQuality:
 
         '''
         # Get the face qualities from the image
-        face_qualities = face_image_quality.get_face_quality_params(image)
+        face_qualities = self.get_face_quality_params(image)
 
         # Extract only the result from the face qualities
         results = []
