@@ -76,6 +76,7 @@ print(res,',',message)
 
 import os
 from FaceImageQuality import FaceImageQuality
+
 path = "path of the folder"
 face_image_quality = FaceImageQuality()
 for filename in os.listdir(path):
