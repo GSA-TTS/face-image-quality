@@ -21,6 +21,7 @@ pip install -r requirements.txt
 ## How to use
 ## To check face quality parameters
 ```python
+import cv2
 from FaceImageQuality import FaceImageQuality
 
 face_image_quality = FaceImageQuality()
@@ -33,6 +34,7 @@ print(face_quality_params)
 Return results in array
 ['brightness', 'blur', 'background_color', 'washed_out', 'pixelation', 'face_present', 'nose_position', 'pitch', 'roll', 'eye', 'mouth']
 ```python 
+import cv2
 from FaceImageQuality import FaceImageQuality
 
 face_image_quality = FaceImageQuality()
@@ -48,6 +50,7 @@ Return values in array
 The values can not be represented as a single value output None
 
 ```python
+import cv2
 from FaceImageQuality import FaceImageQuality
 
 face_image_quality = FaceImageQuality()
@@ -59,6 +62,7 @@ print(face_quality_values_only)
 
 ## Check image quality pass/fail and message
 ```python
+import cv2
 from FaceImageQuality import FaceImageQuality
 
 face_image_quality = FaceImageQuality()
@@ -72,6 +76,7 @@ print(res,',',message)
 ```python
 
 import os
+import cv2
 from FaceImageQuality import FaceImageQuality
 
 path = "path of the folder"
