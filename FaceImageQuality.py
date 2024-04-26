@@ -223,8 +223,8 @@ class FaceImageQuality:
         hist_norm = hist.ravel() / hist.sum()
 
         # Thresholds can be adjusted based on image characteristics
-        peak_threshold = 0.8  # Threshold for peak concentration
-        low_threshold = 0.1  # Threshold for low values at extremes
+        peak_threshold = th.WASHED_OUT_PEAK_THRESHOLD  # Threshold for peak concentration
+        low_threshold = th.WASHED_OUT_LOW_THRESHOLD  # Threshold for low values at extremes
         washed_out = False
 
         # Check if peak is too high and extremes are too low
