@@ -33,7 +33,7 @@ print(face_quality_params)
 
 ## Get face quality results only
 Return results in array
-['brightness', 'blur', 'background_color', 'washed_out', 'pixelation', 'face_present', 'nose_position', 'pitch', 'roll', 'eye', 'mouth']
+['brightness', 'blur', 'background_color', 'washed_out', 'pixelation', 'face_present', 'nose_position', 'pitch', 'roll', 'eye', 'mouth','red_eye']
 ```python 
 import cv2
 from FaceImageQuality import FaceImageQuality
@@ -47,7 +47,7 @@ print(face_quality_results_only)
 
 ## Get face quality values only
 Return values in array
-[brightness, blur, background_color, washed_out, pixelation, face_present, nose_position, pitch, roll, eye, mouth]
+[brightness, blur, background_color, washed_out, pixelation, face_present, nose_position, pitch, roll, eye, mouth,red_eye]
 The values can not be represented as a single value output None
 
 ```python
@@ -95,16 +95,16 @@ https://github.com/baset-sarker/face-aware-capture.git
 ```console
 
 @Article{electronics13071178,
-AUTHOR = {Sarker, Md Abdul Baset and Hossain, S. M. Safayet and Venkataswamy, Naveenkumar G. and Schuckers, Stephanie and Imtiaz, Masudul H.},
-TITLE = {An Open-Source Face-Aware Capture System},
-JOURNAL = {Electronics},
-VOLUME = {13},
-YEAR = {2024},
-NUMBER = {7},
-ARTICLE-NUMBER = {1178},
-URL = {https://www.mdpi.com/2079-9292/13/7/1178},
-ISSN = {2079-9292},
-DOI = {10.3390/electronics13071178}
+    AUTHOR = {Sarker, Md Abdul Baset and Hossain, S. M. Safayet and Venkataswamy, Naveenkumar G. and Schuckers, Stephanie and Imtiaz, Masudul H.},
+    TITLE = {An Open-Source Face-Aware Capture System},
+    JOURNAL = {Electronics},
+    VOLUME = {13},
+    YEAR = {2024},
+    NUMBER = {7},
+    ARTICLE-NUMBER = {1178},
+    URL = {https://www.mdpi.com/2079-9292/13/7/1178},
+    ISSN = {2079-9292},
+    DOI = {10.3390/electronics13071178}
 }
 ```
 

@@ -28,7 +28,8 @@ class FaceImageQuality:
             'pitch': {'result':False,'value': None, 'msg': None},
             'roll': {'result':False,'value': None, 'msg': None},
             'eye': {'result':False,'value': None, 'msg': None},
-            'mouth': {'result':False,'value': None, 'msg': None}
+            'mouth': {'result':False,'value': None, 'msg': None},
+            'red_eye': {'result':False,'value': None, 'msg': None},
         }
 
     def angle_between(self,p1, p2):
@@ -308,7 +309,7 @@ class FaceImageQuality:
             return {'result': False, 'value': None, 'msg': msg.BACKGROUND_COLOR_MSG_FAIL}
         
 
-    def check_one_eye_red(eye):
+    def is_one_eye_red(self,eye):
         '''
         Check if there is red eye in the given eye image.
 
@@ -337,6 +338,37 @@ class FaceImageQuality:
         else:
             #print("No red eye detected")
             return False
+        
+    def detect_red_eye(self,photo,shape):
+
+        x1=shape.part(36).x 
+        x2=shape.part(39).x 
+        y1=shape.part(37).y 
+        y2=shape.part(40).y
+        # x1=shape[36][0]
+        # x2=shape[39][0]
+        # y1=shape[37][1]
+        # y2=shape[40][1]
+        lefteye=photo[y1:y2,x1:x2]
+
+        check_left_eye = self.is_one_eye_red(lefteye)
+
+        x1=shape.part(42).x 
+        x2=shape.part(45).x #43 46 #44 47 
+        y1=shape.part(43).y 
+        y2=shape.part(46).y 
+        # x1=shape[42][0]
+        # x2=shape[45][0]
+        # y1=shape[43][1]
+        # y2=shape[46][1]
+        righteye=photo[y1:y2,x1:x2]
+
+        check_right_eye = self.is_one_eye_red(righteye)
+
+        if check_left_eye == False or check_right_eye == False:
+            return {'result':False,'value':None,'msg':msg.RED_EYE_MSG_OK}
+        else:
+            return {'result':True,'value':None,'msg':msg.RED_EYE_MSG_FAIL}
 
 
     def check_pitch_value(self, jaw, nose, low_threshold, high_threshold):
@@ -444,51 +476,61 @@ class FaceImageQuality:
         if len(rects) > 0:
             rect = rects[0]
             shape = self.predictor(image, rect)
-            shape = face_utils.shape_to_np(shape)
-            jaw = shape[jStart:jEnd]
-            nose = shape[nStart:nEnd]
+            shape_numpy = face_utils.shape_to_np(shape)
+            jaw = shape_numpy[jStart:jEnd]
+            nose = shape_numpy[nStart:nEnd]
             nose_x = nose[0][0]
             nose_y = nose[0][1]
-            return True, jaw, nose, shape, nose_x, nose_y
+            return True, jaw, nose, shape, shape_numpy, nose_x, nose_y
         else:
-            return False, None, None, None, None, None
+            return False, None, None, None, None, None, None
 
 
-    def get_face_quality_params(self,image):
-        
-        #Convert image to graysale
+    def get_face_quality_params(self, image):
+        '''
+        Calculates various quality parameters of a face image.
+
+        Args:
+            image (numpy.ndarray): The input face image.
+
+        Returns:
+            dict: A dictionary containing the calculated quality parameters.
+
+        '''
+
+        # Convert image to grayscale
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-        #get brightness value
+        # Calculate brightness value
         self.face_quality_param['brightness'] = self.get_brightness(
-            image,th.BRIGHTNESS_THRESHOLD_LOW,th.BRIGHTNESS_THRESHOLD_HIGH)
-        
-        #check blur
-        self.face_quality_param['blur'] = self.check_blur_image(
-            gray,th.BLUR_THRESHOLD_LOW,th.BLUR_THRESHOLD_HIGH)
+            image, th.BRIGHTNESS_THRESHOLD_LOW, th.BRIGHTNESS_THRESHOLD_HIGH)
 
-        #check background is white
+        # Check for blur
+        self.face_quality_param['blur'] = self.check_blur_image(
+            gray, th.BLUR_THRESHOLD_LOW, th.BLUR_THRESHOLD_HIGH)
+
+        # Check if background color is white
         self.face_quality_param['background_color'] = self.check_background_color_white(image)
 
-        #washed out 
+        # Check for washed out image
         self.face_quality_param['washed_out'] = self.check_washed_out(image)
- 
-        #check pixelation
+
+        # Check for pixelation
         self.face_quality_param['pixelation'] = self.check_pixelation(
-            gray,th.PIXELATION_THRESHOLD_LOW,th.PIXELATION_THRESHOLD_HIGH)
+            gray, th.PIXELATION_THRESHOLD_LOW, th.PIXELATION_THRESHOLD_HIGH)
 
-
-        # # check if face is present
-        face_present,jaw,nose,shape,nose_x,nose_y = self.check_if_face_present(image)
+        # Check if face is present
+        face_present, jaw, nose, shape, shape_numpy, nose_x, nose_y = self.check_if_face_present(image)
         if face_present == False:
-            self.face_quality_param['face_present'] = {'result':face_present,'value':None,'msg':msg.FACE_PRESENT_MSG_FAIL}
+            self.face_quality_param['face_present'] = {'result': face_present, 'value': None, 'msg': msg.FACE_PRESENT_MSG_FAIL}
         else:
-            self.face_quality_param['face_present'] = {'result':face_present,'value':None,'msg':msg.FACE_PRESENT_MSG_OK}
-            self.face_quality_param['nose_position'] = self.check_nose_is_in_middle(image,nose_x,nose_y)
-            self.face_quality_param['pitch'] = self.check_pitch_value(jaw,nose,th.PITCH_MIN,th.PITCH_MAX)
+            self.face_quality_param['face_present'] = {'result': face_present, 'value': None, 'msg': msg.FACE_PRESENT_MSG_OK}
+            self.face_quality_param['nose_position'] = self.check_nose_is_in_middle(image, nose_x, nose_y)
+            self.face_quality_param['pitch'] = self.check_pitch_value(jaw, nose, th.PITCH_MIN, th.PITCH_MAX)
             self.face_quality_param['roll'] = self.check_roll_angle(jaw)
-            self.face_quality_param['eye'] = self.check_eye_open(shape)
-            self.face_quality_param['mouth']= self.mouth_open(shape)
+            self.face_quality_param['eye'] = self.check_eye_open(shape_numpy)
+            self.face_quality_param['mouth'] = self.mouth_open(shape_numpy)
+            self.face_quality_param['red_eye'] = self.detect_red_eye(image,shape)
 
         return self.face_quality_param
 
