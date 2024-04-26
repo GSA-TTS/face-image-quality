@@ -91,9 +91,6 @@ for filename in os.listdir(path):
     print(filename,',',res,',',value,',',message)
 ```
 
-# Original version
-https://github.com/baset-sarker/face-aware-capture.git
-
 # To cite the paper
 ```console
 
