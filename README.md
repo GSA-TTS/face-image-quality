@@ -9,6 +9,7 @@ github: https://github.com/baset-sarker/face-aware-capture.git
 Some functionality added here to get results, values etc.
 Face quality checking thresholds are in the thresholds.py file
 Error messages are in the messages.py file
+Note: Thresholds are established based on our experiment setup and may vary across different setups. Adjust the thresholds according to your specific requirements.
 
 
 # How to run the code
