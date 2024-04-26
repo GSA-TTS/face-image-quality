@@ -24,7 +24,7 @@ class FaceImageQuality:
             'washed_out': {'result':False,'value': None, 'msg': None},
             'pixelation': {'result':False,'value': None, 'msg': None},
             'face_present': {'result':False,'value': None, 'msg': None},
-            'nose_position': {'result':False,'value': None, 'msg': None},
+            'head_position': {'result':False,'value': None, 'msg': None},
             'pitch': {'result':False,'value': None, 'msg': None},
             'roll': {'result':False,'value': None, 'msg': None},
             'eye': {'result':False,'value': None, 'msg': None},
@@ -241,6 +241,7 @@ class FaceImageQuality:
 
     def check_nose_is_in_middle(self, img, x, y):
         """
+        Caluated head position based on the nose position.
         Check if the nose position is in the middle of the image.
 
         Args:
@@ -258,9 +259,9 @@ class FaceImageQuality:
 
         # Check if the nose position is within the defined range
         if (x_percent > 42 and x_percent < 58) and (y_percent > 32 and y_percent < 40):
-            return {'result': True, 'value': None, 'msg': msg.NOSE_POSITION_MSG_OK}
+            return {'result': True, 'value': None, 'msg': msg.HEAD_POSITION_MSG_OK}
         else:
-            return {'result': False, 'value': None, 'msg': msg.NOSE_POSITION_MSG_FAIL}
+            return {'result': False, 'value': None, 'msg': msg.HEAD_POSITION_MSG_FAIL}
     def is_nose_is_in_middle(self,img,x,y):
         
         h, w = img.shape[:2]
@@ -269,9 +270,9 @@ class FaceImageQuality:
 
         #print("Nose position in percent %",x_percent,y_percent)
         if (x_percent > 42 and x_percent < 58) and (y_percent > 32 and y_percent < 40):
-            return {'result':True,'value':None,'msg':msg.NOSE_POSITION_MSG_OK}
+            return {'result':True,'value':None,'msg':msg.HEAD_POSITION_MSG_OK}
         else:
-            return {'result':False,'value':None,'msg':msg.NOSE_POSITION_MSG_FAIL}
+            return {'result':False,'value':None,'msg':msg.HEAD_POSITION_MSG_FAIL}
     
     # required pil image so converted from cv2 first
     def check_background_color_white(self, cv2_image):
@@ -358,9 +359,9 @@ class FaceImageQuality:
         check_right_eye = self.is_one_eye_red(righteye)
 
         if check_left_eye == False or check_right_eye == False:
-            return {'result':False,'value':None,'msg':msg.RED_EYE_MSG_OK}
+            return {'result':True,'value':None,'msg':msg.RED_EYE_MSG_OK}
         else:
-            return {'result':True,'value':None,'msg':msg.RED_EYE_MSG_FAIL}
+            return {'result':False,'value':None,'msg':msg.RED_EYE_MSG_FAIL}
 
 
     def check_pitch_value(self, jaw, nose, low_threshold, high_threshold):
@@ -517,7 +518,7 @@ class FaceImageQuality:
             self.face_quality_param['face_present'] = {'result': face_present, 'value': None, 'msg': msg.FACE_PRESENT_MSG_FAIL}
         else:
             self.face_quality_param['face_present'] = {'result': face_present, 'value': None, 'msg': msg.FACE_PRESENT_MSG_OK}
-            self.face_quality_param['nose_position'] = self.check_nose_is_in_middle(image, nose_x, nose_y)
+            self.face_quality_param['head_position'] = self.check_nose_is_in_middle(image, nose_x, nose_y)
             self.face_quality_param['pitch'] = self.check_pitch_value(jaw, nose, th.PITCH_MIN, th.PITCH_MAX)
             self.face_quality_param['roll'] = self.check_roll_angle(jaw)
             self.face_quality_param['eye'] = self.check_eye_open(shape_numpy)
