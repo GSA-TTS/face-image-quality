@@ -34,8 +34,8 @@ print(face_quality_params)
 ``` 
 
 ## Get face quality results only
-Return results in array
-['brightness', 'blur', 'background_color', 'washed_out', 'pixelation', 'face_present', 'head_position', 'pitch', 'roll', 'eye', 'mouth','red_eye']
+Return results in array <br>
+[brightness, blur, background_color, washed_out, pixelation, face_present, head_position, pitch, roll, eye, mouth,red_eye]
 ```python 
 import cv2
 from FaceImageQuality import FaceImageQuality
@@ -48,7 +48,7 @@ print(face_quality_results_only)
 
 
 ## Get face quality values only
-Return values in array
+Return values in array <br>
 [brightness, blur, background_color, washed_out, pixelation, face_present, head_position, pitch, roll, eye, mouth,red_eye]
 The values can not be represented as a single value output None
 
