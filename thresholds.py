@@ -10,7 +10,7 @@ EYE_DISTANCE_RATIO = 6
 MOUTH_OPEN_LOW = 12
 MOUTH_OPEN_HIGH = 25
 # pitch is not calculated in angles, it is calculated in ratios 
-# of distance of tow eye from middele of the nose
+# of distance of two eyes from middele of the nose
 PITCH_MIN = 0.9
 PITCH_MAX = 1.2
 ROLL_ANGLE = 10
