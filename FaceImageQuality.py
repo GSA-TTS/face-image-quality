@@ -345,10 +345,6 @@ class FaceImageQuality:
         x2=shape.part(39).x 
         y1=shape.part(37).y 
         y2=shape.part(40).y
-        # x1=shape[36][0]
-        # x2=shape[39][0]
-        # y1=shape[37][1]
-        # y2=shape[40][1]
         lefteye=photo[y1:y2,x1:x2]
 
         check_left_eye = self.is_one_eye_red(lefteye)
@@ -357,10 +353,6 @@ class FaceImageQuality:
         x2=shape.part(45).x #43 46 #44 47 
         y1=shape.part(43).y 
         y2=shape.part(46).y 
-        # x1=shape[42][0]
-        # x2=shape[45][0]
-        # y1=shape[43][1]
-        # y2=shape[46][1]
         righteye=photo[y1:y2,x1:x2]
 
         check_right_eye = self.is_one_eye_red(righteye)
