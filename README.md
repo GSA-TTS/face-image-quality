@@ -89,7 +89,7 @@ for filename in os.listdir(path):
 https://github.com/baset-sarker/face-aware-capture.git
 
 # To cite the paper
-``` console
+```console
 
 @Article{electronics13071178,
 AUTHOR = {Sarker, Md Abdul Baset and Hossain, S. M. Safayet and Venkataswamy, Naveenkumar G. and Schuckers, Stephanie and Imtiaz, Masudul H.},
