@@ -4,12 +4,13 @@ Abstract: This work introduces a novel facial image capture system that utilizes
 <!-- ![Alt text](asset/face_aware.png) -->
 
 # Overview
-This is the modified version of original paper 
+This is the modified version of original paper
+
 Paper: https://www.mdpi.com/2079-9292/13/7/1178
 github: https://github.com/baset-sarker/face-aware-capture.git 
-Some functionality added here to get results, values etc.
 
-Face quality thresholds are in the thresholds.py file
+Some functionality added here to get results, values etc.
+Face quality checking thresholds are in the thresholds.py file
 Error messages are in the messages.py file
 
 
@@ -32,7 +33,7 @@ print(face_quality_params)
 ``` 
 
 ## Get face quality results only
-return results in array
+Return results in array
 ['brightness', 'blur', 'background_color', 'washed_out', 'pixelation', 'face_present', 'nose_position', 'pitch', 'roll', 'eye', 'mouth']
 ```python 
 from FaceImageQuality import FaceImageQuality
