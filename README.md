@@ -5,7 +5,7 @@ Abstract: This work introduces a novel facial image capture system that utilizes
 
 # Overview
 This is the modified version of original paper 
-https://www.mdpi.com/2079-9292/13/7/1178
+Paper: https://www.mdpi.com/2079-9292/13/7/1178
 github: https://github.com/baset-sarker/face-aware-capture.git 
 Some functionality added here to get results, values etc.
 
@@ -15,8 +15,8 @@ Error messages are in the messages.py file
 
 # How to run the code
 ```console
-git clone https://github.com/baset-sarker/face-aware-capture.git
-cd face-aware-capture
+git clone https://github.com/baset-sarker/face-image-quality.git
+cd face-image-quality
 pip install -r requirements.txt
 ```
 
