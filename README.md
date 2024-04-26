@@ -2,7 +2,7 @@
 This is the modified version of original paper
 An Open-source face-aware capture system. 
 
-Paper: https://www.mdpi.com/2079-9292/13/7/1178
+Paper: https://www.mdpi.com/2079-9292/13/7/1178 <br />
 github: https://github.com/baset-sarker/face-aware-capture.git 
 
 <br />
