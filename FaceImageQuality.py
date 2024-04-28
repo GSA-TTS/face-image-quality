@@ -513,7 +513,7 @@ class FaceImageQuality:
             gray, th.PIXELATION_THRESHOLD_LOW, th.PIXELATION_THRESHOLD_HIGH)
 
         # Check if face is present
-        face_present, jaw, nose, shape, shape_numpy, nose_x, nose_y = self.check_if_face_present(image)
+        face_present, jaw, nose, shape, shape_numpy, nose_x, nose_y = self.check_if_face_present(gray)
         if face_present == False:
             self.face_quality_param['face_present'] = {'result': face_present, 'value': None, 'msg': msg.FACE_PRESENT_MSG_FAIL}
         else:
