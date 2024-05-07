@@ -26,3 +26,5 @@ TestResults.xml
 test.py
 data
 
+__pycache__/
+.venv/
