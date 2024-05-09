@@ -8,8 +8,6 @@ def parse_requirements(filename):
 # Read dependencies from requirements.txt
 install_requires = parse_requirements("requirements.txt")
 
-print(install_requires)
-
 setup(
     name='face_image_quality',
     version='0.1',
