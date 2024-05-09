@@ -3,5 +3,5 @@ imutils==0.5.4
 numpy==1.22.4
 opencv-python==4.9.0.80
 Pillow==9.5.0
-scipy==1.7.3
+scipy==1.11.1
 shapely==2.0.3
